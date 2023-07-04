@@ -1,8 +1,8 @@
 ---
-title: "Cell_Type_Annotation"
+title: "scRNA-Seq Cell_Type_Annotation"
 author: "Tapan"
 date: "2023-06-28"
-output: html_document
+output: html_notebook
 ---
 
 
@@ -135,7 +135,7 @@ add_QC_stats <- function(sce){
  
   colTable=colData(sce) %>% as.data.frame()  %>% 
   dplyr::select(-c("total",  "subsets_mt_sum","subsets_mt_detected","subsets_hb_sum","subsets_hb_detected", "subsets_ribo_sum","subsets_ribo_detected" ))  %>% 
-  rename(nCount_RNA=sum, nFeature_RNA=detected, Mito_gene_percent=subsets_mt_percent, Hemoglobin_gene_percent=subsets_hb_percent, Ribosomal_gene_percent= subsets_ribo_percent)
+  dplyr::rename(nCount_RNA=sum, nFeature_RNA=detected, Mito_gene_percent=subsets_mt_percent, Hemoglobin_gene_percent=subsets_hb_percent, Ribosomal_gene_percent= subsets_ribo_percent)
   
   sce<- SingleCellExperiment(assay = list(counts = assay(sce,'counts')),
                              colData = colTable)                                               
