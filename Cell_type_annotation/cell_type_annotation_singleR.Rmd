@@ -85,6 +85,7 @@ convert_to_Symbol <- function(obj){
   rowData(obj)$ENSEMBL <- rownames(obj)
   rowData(obj)$SYMBOL <- merge_dt$hgnc_symbol
   new.names <- rowData(obj)$SYMBOL
+  new.names[new.names == 'NA'] <- NA
   missing.name <- is.na(new.names)
   new.names[missing.name] <- rowData(obj)$ENSEMBL[missing.name]
   dup.name <- new.names %in% new.names[duplicated(new.names)]
